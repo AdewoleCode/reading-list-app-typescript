@@ -1,0 +1,139 @@
+.book-search-container {
+    border: 1px solid red;
+    height: 100vh;
+    padding: 1rem 2rem;
+}
+
+.book-search-container .search-btn-input {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+    gap: 0.5rem;
+}
+
+.book-search-container .search-btn-input input {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    outline: none;
+    width: 370px;
+}
+
+.book-search-container .search-btn-input button {
+    padding: 0.5rem 1rem;
+    background: black;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95;
+    font-weight: 600;
+}
+
+.book-search-container .search-btn-input button:disabled {
+    background: gray;
+    color: rgba(241, 221, 221, 0.459);
+    cursor: not-allowed;
+}
+
+.book-search-container .result-box {
+    border: 5px solid grey;
+    border-radius: 5px;
+    width: 900px;
+    height: 400px;
+    overflow-y: scroll;
+    margin: 0 auto;
+}
+
+.book-search-container .book-header ul{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.book-search-container .book-header ul li {
+    list-style: none;
+}
+
+.book-search-container .book-header ul .head-title {
+    flex-basis: 32%;
+    border: 1px solid red;
+}
+
+.book-search-container .book-header ul .head-author {
+    flex-basis: 26%;
+    border: 1px solid red;
+}
+
+.book-search-container .book-header ul .head-pages{
+    flex-basis: 6%;
+    border: 1px solid red;
+}
+
+.book-search-container .book-header ul .head-add {
+    flex-basis: 7%;
+    border: 1px solid red;
+}
+
+
+.book-search-container .result-box .book-item {
+    border: 1px solid grey;
+    padding: 1rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background: #fff;
+}
+
+.book-search-container .result-box .book-item .title {
+    flex-basis: 36%;
+}
+
+.book-search-container .result-box .book-item .author {
+    flex-basis: 25%;
+}
+
+.book-search-container .result-box .book-item .book-item-btn {
+    width: 80px;
+    padding: 0.2rem;
+    font-size: 0.70rem;
+    font-weight: 600;
+    background: black;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.2s all ease-in;
+}
+
+.book-search-container .result-box .book-item .book-item-btn:hover {
+    transform: scale(1.1);
+}
+.book-search-container .result-box .button-prev-next-box {
+    border: 1px solid orchid;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.book-search-container .result-box .button-prev-next-box .next-btn,
+.prev-btn {
+    padding: 0.3rem 1rem;
+    background: black;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.book-search-container .result-box .button-prev-next-box .prev-btn:disabled {
+    background: gray;
+    color: rgba(241, 221, 221, 0.459);
+    cursor: not-allowed;
+}
+
+.book-search-container .result-box .button-prev-next-box .next-btn:disabled {
+    background: gray;
+    color: rgba(241, 221, 221, 0.459);
+    cursor: not-allowed;
+}

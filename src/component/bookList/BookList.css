@@ -1,0 +1,30 @@
+.bookListContainer {
+    border: 1px solid red;
+    width: 900px;
+    margin: 0 auto;
+}
+
+.bookListContainer h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+}
+
+.bookListContainer .book-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid grey;
+    padding: 0.7rem 0.3rem;
+    cursor: pointer;
+}
+
+.bookListContainer .book-item .left h3 {
+    font-size: 1.18rem;
+    margin-bottom: 0.5rem;
+    font-weight: 900;
+}
+
+.bookListContainer .book-item .left p {
+    color: grey;
+    font-size: 0.95rem;
+}
