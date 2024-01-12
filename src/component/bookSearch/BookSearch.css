@@ -43,7 +43,7 @@
     margin: 0 auto;
 }
 
-.book-search-container .book-header ul{
+.book-search-container .book-header ul {
     display: flex;
     justify-content: space-between;
     padding: 1rem;
@@ -63,7 +63,7 @@
     border: 1px solid red;
 }
 
-.book-search-container .book-header ul .head-pages{
+.book-search-container .book-header ul .head-pages {
     flex-basis: 6%;
     border: 1px solid red;
 }
@@ -107,6 +107,7 @@
 .book-search-container .result-box .book-item .book-item-btn:hover {
     transform: scale(1.1);
 }
+
 .book-search-container .result-box .button-prev-next-box {
     border: 1px solid orchid;
     padding: 1rem;

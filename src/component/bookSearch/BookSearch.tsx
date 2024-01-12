@@ -1,6 +1,15 @@
 import axios from "axios"
 import { useState } from "react"
 import "./BookSearch.css"
+import { toast } from "react-toastify"
+
+export const toastOptions = {
+    position: "bottom-right",
+    autoClose: 3000,
+    pauseOnHover: true,
+    draggable: true,
+    theme: "light",
+}
 
 export type Book = {
     key: string,
@@ -18,12 +27,9 @@ type SearchResult = {
 
 const BookSearch = ({ onAddBook }: { onAddBook: (book: Book) => void }) => {
 
-
     const [query, setQuery] = useState<any>('')
     const [results, setResults] = useState<Book[]>([])
     const [loading, setLoading] = useState(false)
-    const [totalResult, setTotalResult] = useState(0)
-    const [currentPage, setCurrentPage] = useState(1)
     const resultsPerPage = 15
 
     const searchBook = async (page: number = 1) => {
@@ -36,8 +42,6 @@ const BookSearch = ({ onAddBook }: { onAddBook: (book: Book) => void }) => {
             const response =
                 await axios.get<SearchResult>(`https://openlibrary.org/search.json?q=${query}&page=${page}&limit=${resultsPerPage}`)
             setResults(response.data.docs)
-            setTotalResult(response.data.numberOfResult)
-            setCurrentPage(page)
 
         } catch (error) {
             console.log('error fetching data', error);
@@ -51,18 +55,17 @@ const BookSearch = ({ onAddBook }: { onAddBook: (book: Book) => void }) => {
         }
     }
 
-    const handlePreviousClick = () => {
-        if (currentPage > 1) {
-            searchBook(currentPage - 1)
-        }
+    const saveInfo = () => {
+        toast.success('book listed successfully',
+            {
+                position: "bottom-right",
+                autoClose: 2000,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "dark"
+            }
+        )
     }
-
-    const handleNextClick = () => {
-        if (currentPage < Math.ceil(totalResult / resultsPerPage)) {
-            searchBook(currentPage + 1)
-        }
-    }
-
 
     return (
         <div className="book-search-container">
@@ -104,15 +107,19 @@ const BookSearch = ({ onAddBook }: { onAddBook: (book: Book) => void }) => {
                                     <p>{book.first_public_year}</p>
                                     <p>{book.number_of_pages_median || "-"}</p>
                                     <button
-                                    className="book-item-btn"
-                                        onClick={() => onAddBook({
-                                            key: book.key,
-                                            title: book.title,
-                                            author_name: book.author_name,
-                                            first_public_year: book.first_public_year,
-                                            number_of_pages_median: book.number_of_pages_median || null,
-                                            status: "backlog"
-                                        })}
+                                        className="book-item-btn"
+                                        onClick={() => {
+                                            saveInfo()
+                                            onAddBook({
+                                                key: book.key,
+                                                title: book.title,
+                                                author_name: book.author_name,
+                                                first_public_year: book.first_public_year,
+                                                number_of_pages_median: book.number_of_pages_median || null,
+                                                status: "backlog"
+                                            })
+                                        }}
+                                        disabled={results?.some(b => b.key == book.key)}
                                     >
                                         Add Book
                                     </button>
@@ -123,25 +130,8 @@ const BookSearch = ({ onAddBook }: { onAddBook: (book: Book) => void }) => {
                     }
                 </div>
 
-                {/* <div className="button-prev-next-box">
-                    <button
-                        className="prev-btn"
-                        disabled={loading || currentPage <= 1}
-                        onClick={handlePreviousClick}
-                    >
-                        Previous
-                    </button>
-                    <span>Page {currentPage}</span>
-                    <button
-                        className="next-btn"
-                        onClick={handleNextClick}
-                        disabled={loading || (currentPage >= Math.ceil(totalResult / resultsPerPage))}
-                    >
-                        Next
-                    </button>
-                </div> */}
             </div>
-        </div>
+        </div >
     )
 }
 

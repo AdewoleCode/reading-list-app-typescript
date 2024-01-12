@@ -1,0 +1,61 @@
+.confirmation-modal-box {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirmation-modal-box .confirmation-modal-wrapper {
+    background-color: #fff;
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    border-radius: 5px;
+}
+
+.confirmation-modal-box .btn-confirm-box {
+    display: flex;
+    gap: 2rem;
+}
+
+.confirmation-modal-box .btn-confirm-box button {
+    padding: 0.3rem 1rem;
+    border-radius: 3px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: 0.2s all ease-in;
+}
+
+.confirmation-modal-box .btn-confirm-box button:hover {
+    transform: scale(1.1);
+}
+
+.confirmation-modal-box .btn-confirm-box .confirm-btn {
+    background: rgb(44, 43, 43);
+    color: #fff;
+}
+
+.confirmation-modal-box .btn-confirm-box .cancel-btn {
+    background: rgb(235, 33, 33);
+    color: #fff;
+}
+
+@media only screen and (max-width: 550px) {
+    .confirmation-modal-box .confirmation-modal-wrapper {
+        padding: 2rem 1rem;
+        width: 90%;
+    }
+}
