@@ -1,7 +1,12 @@
 import axios from "axios"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "./BookSearch.css"
 import { toast } from "react-toastify"
+import { Book, useStore } from "../../../store"
+import Spinner from "../../component/spinner/Spinner"
+import { FaList } from "react-icons/fa";
+import { IoClose } from "react-icons/io5";
+
 
 export const toastOptions = {
     position: "bottom-right",
@@ -11,22 +16,19 @@ export const toastOptions = {
     theme: "light",
 }
 
-export type Book = {
-    key: string,
-    title: string,
-    author_name: string[],
-    first_public_year: string,
-    number_of_pages_median: string | null,
-    status: "done" | "inProgress" | "backlog"
-}
-
 type SearchResult = {
     docs: Book[],
     numberOfResult: number
 }
 
-const BookSearch = ({ onAddBook }: { onAddBook: (book: Book) => void }) => {
+const BookSearch = ({ showDialog, setShowDialog }: any) => {
 
+    const { books, addBook } = useStore(state => state)
+
+    useEffect(() => {
+        console.log(books);
+
+    }, [])
     const [query, setQuery] = useState<any>('')
     const [results, setResults] = useState<Book[]>([])
     const [loading, setLoading] = useState(false)
@@ -59,7 +61,7 @@ const BookSearch = ({ onAddBook }: { onAddBook: (book: Book) => void }) => {
         toast.success('book listed successfully',
             {
                 position: "bottom-right",
-                autoClose: 2000,
+                autoClose: 1500,
                 pauseOnHover: true,
                 draggable: true,
                 theme: "dark"
@@ -68,66 +70,79 @@ const BookSearch = ({ onAddBook }: { onAddBook: (book: Book) => void }) => {
     }
 
     return (
-        <div className="book-search-container">
-            <div className="search-btn-input">
-                <input
-                    type="text"
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    placeholder="Search For Your Next Book"
-                    onKeyUp={handleKeyPress}
-                />
-                <button
-                    onClick={() => searchBook()}
-                    disabled={loading}
-                >
-                    {loading ? "Searching..." : "Search"}
-                </button>
-            </div>
+        showDialog &&
+        <div className="book-search-wrapper">
+            <div className="book-search-container">
+                <IoClose onClick={( ) => setShowDialog(!showDialog)} className="cancel-icon" />
 
-            <div className="result-box">
-                <div>
-                    <div className="book-header">
-                        <ul>
-                            <li className="head-title">Book Title</li>
-                            <li className="head-author">Book Author</li>
-                            <li className="head-pages">Pages</li>
-                            <li className="head-add">-</li>
-                        </ul>
-                    </div>
-                    {
-                        results?.map((book, index) => {
-                            return (
-                                <div
-                                    className="book-item"
-                                    key={index}
-                                >
-                                    <p className="title">{book.title}</p>
-                                    <p className="author">{book.author_name}</p>
-                                    <p>{book.first_public_year}</p>
-                                    <p>{book.number_of_pages_median || "-"}</p>
-                                    <button
-                                        className="book-item-btn"
-                                        onClick={() => {
-                                            saveInfo()
-                                            onAddBook({
-                                                key: book.key,
-                                                title: book.title,
-                                                author_name: book.author_name,
-                                                first_public_year: book.first_public_year,
-                                                number_of_pages_median: book.number_of_pages_median || null,
-                                                status: "backlog"
-                                            })
-                                        }}
-                                        disabled={results?.some(b => b.key == book.key)}
+                <div className="search-btn-input">
+                    <input
+                        type="text"
+                        value={query}
+                        onChange={(e) => setQuery(e.target.value)}
+                        placeholder="Enter Book Title or Author"
+                        onKeyUp={handleKeyPress}
+                    />
+                    <button
+                        onClick={() => searchBook()}
+                        disabled={loading || !query}
+                    >
+                        {loading ? "Searching..." : "Search"}
+                    </button>
+                </div>
+
+                <div className="result-box">
+                    <div>
+                        <div className="book-header">
+                            <ul>
+                                <li className="head-title">Book Title</li>
+                                <li className="head-author">Book Author</li>
+                                <li className="head-pages">Pages</li>
+                                <li className="head-add">-</li>
+                            </ul>
+                        </div>
+                        {
+
+                            results.length > 0 ? results.map((book, index) => {
+                                return (
+                                    <div
+                                        className="book-item"
+                                        key={index}
                                     >
-                                        Add Book
-                                    </button>
-                                </div>
+                                        <p className="title">{book.title}</p>
+                                        <p className="author">{book.author_name}</p>
+                                        <p>{book.first_public_year || "-"}</p>
+                                        <p>{book.number_of_pages_median || "-"}</p>
+                                        <button
+                                            className="book-item-btn"
+                                            onClick={() => {
+                                                saveInfo()
+                                                addBook({
+                                                    key: book.key,
+                                                    title: book.title,
+                                                    author_name: book.author_name,
+                                                    first_public_year: book.first_public_year,
+                                                    number_of_pages_median: book.number_of_pages_median || null,
+                                                    status: "backlog"
+                                                })
+                                            }}
+                                            disabled={books?.some(b => b.key === book.key)}
+                                        >
+                                            Add Book
+                                        </button>
+                                    </div>
 
-                            )
-                        })
-                    }
+                                )
+                            })
+                                :
+                                loading ? <h2 className="no-result"> <Spinner /></h2>
+                                    :
+                                    <h2 className="no-result-two">
+                                        <FaList style={{ width: '33spx', height: '35px' }} />
+                                        Search For your favorite books and add to reading list!
+                                    </h2>
+                        }
+                    </div>
                 </div>
 
             </div>

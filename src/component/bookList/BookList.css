@@ -1,23 +1,50 @@
 .bookListContainer {
     width: 900px;
     margin: 0 auto;
+    padding: 3rem 0 6rem 0;
+}
+
+.bookListContainer .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 2rem 0;
 }
 
 .bookListContainer h2 {
     font-size: 1.4rem;
-    margin-bottom: 1.2rem;
+    color: #fff;
+}
+
+.bookListContainer .add-new-book-btn {
+    background: linear-gradient(354deg, #383a99, #6ce2ff);
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    padding: 0 1.1rem;
+    height: 39.5px;
 }
 
 .bookListContainer .box-sort-heading {
-    margin: 1.7rem 0 0.8rem 0;
+    margin: 0.7rem 0 1.5rem 0;
+    font-size: 1.1rem;
     font-weight: 600;
-    color: #616161;
+    color: #c9c9c9;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .bookListContainer .book-item {
-    border: 1px solid rgb(187, 187, 187);
     padding: 1rem 1rem;
     border-radius: 0.15rem;
+    background: linear-gradient(354deg, #0e0f5c, #6ce2ff);
+    margin: 0.2rem;
+    color: #fff;
 }
 
 .bookListContainer .book-item .reading-container {
@@ -25,17 +52,21 @@
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
+    background: linear-gradient(354deg, #080950);
+    
 }
 
 .bookListContainer .book-item .left h3 {
-    font-size: 1.18rem;
+    font-size: 1.3rem;
     margin-bottom: 0.5rem;
     font-weight: 900;
+    color: #060738;
 }
 
 .bookListContainer .book-item .left p {
-    color: grey;
+    color: rgb(44, 44, 44);
     font-size: 0.95rem;
+    font-weight: 400;
 }
 
 .bookListContainer .book-item .reading-container .left {
@@ -52,17 +83,17 @@
 
 .bookListContainer .book-item .btn-box .move-btn-box {
     display: flex;
-    gap: 10px;
+    gap: 35px;
 }
 
 .bookListContainer .book-item .btn-box .move-btn-box button {
     color: #fff;
-    padding: 0.3rem 0.7rem;
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     font-weight: 500;
     border-radius: 5px;
     cursor: pointer;
-    border: 1px solid rgb(243, 241, 241);
+    /* border: 1px solid rgb(243, 241, 241); */
+    border: none;
     color: black;
     background: transparent;
 }
@@ -73,13 +104,32 @@
 }
 
 .bookListContainer .book-item .btn-box .remove-btn-box button {
-    background: rgb(235, 33, 33);
-    color: #fff;
-    padding: 0.5rem 0.6rem;
-    font-size: 0.65rem;
+    background: transparent;
+    border: none;
+    color: rgb(173, 0, 0);
+    padding: 0.3rem 0.30rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    border-radius: 3px;
+    border-radius: 6px;
     cursor: pointer;
     outline: none;
-    border: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
+
+
+.bookListContainer .book-item .btn-box .remove-btn-box .icon-del {
+    font-size: 35px;
+}
+
+.bookListContainer .box-backlog {
+    margin-bottom: 4rem;
+    min-height: 300px;
+}
+
+.bookListContainer .box-progress {
+    margin-bottom: 4rem;
+
+}
+

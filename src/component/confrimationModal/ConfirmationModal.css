@@ -24,6 +24,11 @@
     border-radius: 5px;
 }
 
+.confirmation-modal-box .confirmation-modal-wrapper h3 {
+    font-size: 0.1.1rem;
+    color: #5a5a5a;
+}
+
 .confirmation-modal-box .btn-confirm-box {
     display: flex;
     gap: 2rem;
@@ -44,12 +49,12 @@
 }
 
 .confirmation-modal-box .btn-confirm-box .confirm-btn {
-    background: rgb(44, 43, 43);
+    background: rgb(235, 33, 33);
     color: #fff;
 }
 
 .confirmation-modal-box .btn-confirm-box .cancel-btn {
-    background: rgb(235, 33, 33);
+    background: rgb(44, 43, 43);
     color: #fff;
 }
 
