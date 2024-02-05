@@ -1,7 +1,6 @@
 import { toast } from "react-toastify";
 import { Book } from "../../../store";
 import "./ConfirmationModal.css"
-import {Bounce} from "react-reveal"
 
 
 interface confirmationProps {
@@ -28,7 +27,6 @@ const ConfirmationModal =
 
         return (
             openConfirmation &&
-            <Bounce center duration={1000}>
                 <div className="confirmation-modal-box">
                     <div className="confirmation-modal-wrapper">
                         <h3>Are you sure you want to permanently remove book from list?</h3>
@@ -52,7 +50,6 @@ const ConfirmationModal =
                         </div>
                     </div>
                 </div>
-             </Bounce>
         )
     }
 
