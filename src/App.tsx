@@ -12,21 +12,25 @@ function App() {
   const { loadBooksFromLocalStorage } = useStore(state => state)
   const [showDialog, setShowDialog] = useState(false)
 
-
   useEffect(() => {
-    console.log(loadBooksFromLocalStorage());
 
     loadBooksFromLocalStorage()
   }, [loadBooksFromLocalStorage])
 
   return (
-    
-      <div className="app">
-        <BookSearch showDialog={showDialog} setShowDialog={setShowDialog}/>
-        <BookList showDialog={showDialog} setShowDialog={setShowDialog}/>
-        <ToastContainer />
-      </div>
-    
+
+    <div className="app">
+      <BookSearch
+        showDialog={showDialog}
+        setShowDialog={setShowDialog}
+      />
+      <BookList
+        showDialog={showDialog}
+        setShowDialog={setShowDialog}
+      />
+      <ToastContainer />
+    </div>
+
   )
 }
 
